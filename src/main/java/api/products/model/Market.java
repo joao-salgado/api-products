@@ -21,6 +21,13 @@ public class Market implements Serializable {
 
 	@NotEmpty(message = "The name cannot be left empty")
 	private String name;
+	
+	public Market() {}
+	
+	public Market(Market market) {
+		this.id = market.getId();
+		this.name = market.getName();
+	}
 
 	public Long getId() {
 		return id;

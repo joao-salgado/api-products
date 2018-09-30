@@ -21,6 +21,13 @@ public class Stack implements Serializable {
 
 	@NotEmpty(message = "The name cannot be left empty")
 	private String name;
+	
+	public Stack() {}
+	
+	public Stack(Stack stack) {
+		this.id = stack.getId();
+		this.name = stack.getName();
+	}
 
 	public Long getId() {
 		return id;
