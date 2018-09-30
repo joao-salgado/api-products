@@ -14,13 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 @Entity
 @Table(name = "product")
-@Getter @Setter @NoArgsConstructor
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -34,16 +29,56 @@ public class Product implements Serializable {
 
 	@NotEmpty(message = "The description cannot be left empty")
 	private String description;
-
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "product_market", joinColumns = { @JoinColumn(name = "product_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "market_id") })
-	private List<Market> targetMarket;
+	private List<Market> markets;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "product_stack", joinColumns = { @JoinColumn(name = "product_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "stack_id") })
-	private List<Stack> stack;
+	private List<Stack> stacks;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<Market> getMarkets() {
+		return markets;
+	}
+
+	public void setMarkets(List<Market> markets) {
+		this.markets = markets;
+	}
+
+	public List<Stack> getStacks() {
+		return stacks;
+	}
+
+	public void setStacks(List<Stack> stacks) {
+		this.stacks = stacks;
+	}
 
 	@Override
 	public int hashCode() {
